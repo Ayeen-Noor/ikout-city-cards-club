@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import GameModeCard from '../components/GameModeCard';
@@ -8,10 +7,12 @@ import SettingsModal from '../components/SettingsModal';
 import DiwaniyaPage from '../components/DiwaniyaPage';
 import FriendsPage from '../components/FriendsPage';
 import GameTable from '../components/GameTable';
+import LoadingScreen from '../components/LoadingScreen';
 import { Users, User, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<'home' | 'diwaniya' | 'friends' | 'game'>('home');
   const [showVipModal, setShowVipModal] = useState(false);
   const [showStoreModal, setShowStoreModal] = useState(false);
@@ -22,6 +23,10 @@ const Index = () => {
     diamonds: 0,
     isVip: false
   });
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   const handleSubscribe = (tier: 'weekly' | 'monthly') => {
     setPlayerStats(prev => ({ ...prev, isVip: true }));
@@ -54,6 +59,11 @@ const Index = () => {
     { id: '3', name: 'zx.ll', avatar: '/lovable-uploads/5da0dd28-0965-46da-952b-1a513a32e18d.png', score: 16 },
     { id: '4', name: 'Guest-7098091', avatar: '/lovable-uploads/5da0dd28-0965-46da-952b-1a513a32e18d.png', score: 0 }
   ];
+
+  // Show loading screen first
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
 
   if (currentPage === 'game') {
     return (
