@@ -1,8 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* Custom styles for the game */
 
 @layer base {
   :root {
@@ -37,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -100,4 +94,100 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom slider styles for settings */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .15s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #059669;
+}
+
+.slider::-webkit-slider-track {
+  background: #10b981;
+  height: 8px;
+  border-radius: 5px;
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px 0 #555;
+}
+
+.slider::-moz-range-track {
+  background: #10b981;
+  height: 8px;
+  border-radius: 5px;
+}
+
+/* Card animation effects */
+.card-flip {
+  animation: flip 0.3s ease-in-out;
+}
+
+@keyframes flip {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+.card-deal {
+  animation: deal 0.5s ease-out;
+}
+
+@keyframes deal {
+  0% { 
+    transform: translateY(-100px) rotate(180deg);
+    opacity: 0;
+  }
+  100% { 
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Particle effects for premium features */
+.vip-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px #fbbf24; }
+  to { box-shadow: 0 0 20px #fbbf24, 0 0 30px #fbbf24; }
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .game-table {
+    transform: scale(0.8);
+  }
+  
+  .card-hand {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+  .bg-blue-600 { background-color: #1e40af !important; }
+  .bg-green-600 { background-color: #16a34a !important; }
+  .bg-purple-600 { background-color: #9333ea !important; }
+  .bg-orange-600 { background-color: #ea580c !important; }
+  .text-white { color: #ffffff !important; }
+  .border-gray-300 { border-color: #000000 !important; }
 }
