@@ -75,151 +75,165 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900">
-      <Header 
-        coins={playerStats.coins}
-        diamonds={playerStats.diamonds}
-        isVip={playerStats.isVip}
-        onSettingsClick={() => setShowSettingsModal(true)}
+    <div className="min-h-screen relative">
+      {/* Background Image for homepage */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/lovable-uploads/122cdf5e-4b2a-4b0e-ac40-c541db5b884b.png')`
+        }}
       />
       
-      {/* Navigation */}
-      <div className="bg-slate-700 p-2">
-        <div className="flex justify-center space-x-1">
-          {[
-            { id: 'home', icon: '🏠', label: 'Home' },
-            { id: 'diwaniya', icon: '🏛️', label: 'Diwaniya' },
-            { id: 'friends', icon: '👥', label: 'Friends' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setCurrentPage(tab.id as any)}
-              className={`p-3 rounded-lg transition-colors ${
-                currentPage === tab.id ? 'bg-blue-600' : 'bg-slate-600 hover:bg-slate-500'
-              }`}
-            >
-              <div className="text-2xl">{tab.icon}</div>
-            </button>
-          ))}
-          <button 
-            onClick={() => openStore('coins')}
-            className="p-3 bg-slate-600 hover:bg-slate-500 rounded-lg transition-colors"
-          >
-            <div className="text-2xl">🛒</div>
-          </button>
-          <button 
-            onClick={() => openStore('dinars')}
-            className="p-3 bg-slate-600 hover:bg-slate-500 rounded-lg transition-colors"
-          >
-            <div className="text-2xl">💎</div>
-          </button>
-          <button 
-            onClick={() => setShowVipModal(true)}
-            className="p-3 bg-yellow-600 hover:bg-yellow-500 rounded-lg transition-colors"
-          >
-            <Crown className="w-6 h-6 text-white" />
-          </button>
-        </div>
-      </div>
-
-      {/* Page Content */}
-      {currentPage === 'home' && (
-        <div className="p-6">
-          {/* Daily Challenge Section */}
-          <div className="bg-orange-600 rounded-xl p-6 mb-6 text-white">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Jun 25</h2>
-                <div className="text-sm opacity-90">FINISHED</div>
-                <div className="flex items-center space-x-2 mt-2">
-                  <span className="text-sm">BEST STREAK</span>
-                  <div className="bg-red-500 rounded-full px-2 py-1 text-xs">0</div>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold">213</div>
-                <div className="text-sm">REWARD</div>
-                <div className="text-yellow-300">🪙 0</div>
-              </div>
-            </div>
-            <div className="mt-4">
-              <h3 className="font-bold mb-2">👑 Top Players</h3>
-              <div className="space-y-1 text-sm">
-                <div className="flex justify-between">
-                  <span>⭐ boanas83</span>
-                  <span>29</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>⭐ betonmylife</span>
-                  <span>28</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>⭐ dalal.90</span>
-                  <span>20</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Game Modes Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <GameModeCard
-              title="Multiplayer"
-              playerCount="826 PLAYERS"
-              bgColor="bg-blue-600"
-              icon={<Users className="w-12 h-12" />}
-              onClick={() => handleJoinGame('Multiplayer')}
-            />
-            <GameModeCard
-              title="Play with Friends"
-              bgColor="bg-green-600"
-              icon={<Users className="w-12 h-12" />}
-              onClick={() => handleJoinGame('Play with Friends')}
-            />
-            <GameModeCard
-              title="Practice"
-              bgColor="bg-purple-600"
-              icon={<User className="w-12 h-12" />}
-              onClick={() => handleJoinGame('Practice')}
-            />
-            <GameModeCard
-              title="Quick Play"
-              subtitle="Join instantly"
-              bgColor="bg-blue-500"
-              icon={<span className="text-4xl">⚡</span>}
-              onClick={() => handleJoinGame('Quick Play')}
-            />
-          </div>
-        </div>
-      )}
-
-      {currentPage === 'diwaniya' && (
-        <DiwaniyaPage
-          onJoinDiwaniya={(id) => toast.info(`Joining Diwaniya: ${id}`)}
-          onCreateDiwaniya={() => toast.info('Creating new Diwaniya...')}
+      {/* Overlay for better content readability */}
+      <div className="absolute inset-0 bg-black/40" />
+      
+      {/* Content with relative positioning */}
+      <div className="relative z-10">
+        <Header 
+          coins={playerStats.coins}
+          diamonds={playerStats.diamonds}
+          isVip={playerStats.isVip}
+          onSettingsClick={() => setShowSettingsModal(true)}
         />
-      )}
+        
+        {/* Navigation */}
+        <div className="bg-slate-700/80 p-2">
+          <div className="flex justify-center space-x-1">
+            {[
+              { id: 'home', icon: '🏠', label: 'Home' },
+              { id: 'diwaniya', icon: '🏛️', label: 'Diwaniya' },
+              { id: 'friends', icon: '👥', label: 'Friends' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setCurrentPage(tab.id as any)}
+                className={`p-3 rounded-lg transition-colors ${
+                  currentPage === tab.id ? 'bg-blue-600' : 'bg-slate-600 hover:bg-slate-500'
+                }`}
+              >
+                <div className="text-2xl">{tab.icon}</div>
+              </button>
+            ))}
+            <button 
+              onClick={() => openStore('coins')}
+              className="p-3 bg-slate-600 hover:bg-slate-500 rounded-lg transition-colors"
+            >
+              <div className="text-2xl">🛒</div>
+            </button>
+            <button 
+              onClick={() => openStore('dinars')}
+              className="p-3 bg-slate-600 hover:bg-slate-500 rounded-lg transition-colors"
+            >
+              <div className="text-2xl">💎</div>
+            </button>
+            <button 
+              onClick={() => setShowVipModal(true)}
+              className="p-3 bg-yellow-600 hover:bg-yellow-500 rounded-lg transition-colors"
+            >
+              <Crown className="w-6 h-6 text-white" />
+            </button>
+          </div>
+        </div>
 
-      {currentPage === 'friends' && <FriendsPage />}
+        {/* Page Content */}
+        {currentPage === 'home' && (
+          <div className="p-6">
+            {/* Daily Challenge Section */}
+            <div className="bg-orange-600/90 rounded-xl p-6 mb-6 text-white backdrop-blur-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold mb-2">Jun 25</h2>
+                  <div className="text-sm opacity-90">FINISHED</div>
+                  <div className="flex items-center space-x-2 mt-2">
+                    <span className="text-sm">BEST STREAK</span>
+                    <div className="bg-red-500 rounded-full px-2 py-1 text-xs">0</div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-3xl font-bold">213</div>
+                  <div className="text-sm">REWARD</div>
+                  <div className="text-yellow-300">🪙 0</div>
+                </div>
+              </div>
+              <div className="mt-4">
+                <h3 className="font-bold mb-2">👑 Top Players</h3>
+                <div className="space-y-1 text-sm">
+                  <div className="flex justify-between">
+                    <span>⭐ boanas83</span>
+                    <span>29</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>⭐ betonmylife</span>
+                    <span>28</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>⭐ dalal.90</span>
+                    <span>20</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-      {/* Modals */}
-      <VipModal
-        isOpen={showVipModal}
-        onClose={() => setShowVipModal(false)}
-        onSubscribe={handleSubscribe}
-      />
-      
-      <StoreModal
-        isOpen={showStoreModal}
-        onClose={() => setShowStoreModal(false)}
-        storeType={storeType}
-      />
-      
-      <SettingsModal
-        isOpen={showSettingsModal}
-        onClose={() => setShowSettingsModal(false)}
-        onLogout={handleLogout}
-      />
+            {/* Game Modes Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <GameModeCard
+                title="Multiplayer"
+                playerCount="826 PLAYERS"
+                bgColor="bg-blue-600"
+                icon={<Users className="w-12 h-12" />}
+                onClick={() => handleJoinGame('Multiplayer')}
+              />
+              <GameModeCard
+                title="Play with Friends"
+                bgColor="bg-green-600"
+                icon={<Users className="w-12 h-12" />}
+                onClick={() => handleJoinGame('Play with Friends')}
+              />
+              <GameModeCard
+                title="Practice"
+                bgColor="bg-purple-600"
+                icon={<User className="w-12 h-12" />}
+                onClick={() => handleJoinGame('Practice')}
+              />
+              <GameModeCard
+                title="Quick Play"
+                subtitle="Join instantly"
+                bgColor="bg-blue-500"
+                icon={<span className="text-4xl">⚡</span>}
+                onClick={() => handleJoinGame('Quick Play')}
+              />
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'diwaniya' && (
+          <DiwaniyaPage
+            onJoinDiwaniya={(id) => toast.info(`Joining Diwaniya: ${id}`)}
+            onCreateDiwaniya={() => toast.info('Creating new Diwaniya...')}
+          />
+        )}
+
+        {currentPage === 'friends' && <FriendsPage />}
+
+        {/* Modals */}
+        <VipModal
+          isOpen={showVipModal}
+          onClose={() => setShowVipModal(false)}
+          onSubscribe={handleSubscribe}
+        />
+        
+        <StoreModal
+          isOpen={showStoreModal}
+          onClose={() => setShowStoreModal(false)}
+          storeType={storeType}
+        />
+        
+        <SettingsModal
+          isOpen={showSettingsModal}
+          onClose={() => setShowSettingsModal(false)}
+          onLogout={handleLogout}
+        />
+      </div>
     </div>
   );
 };
