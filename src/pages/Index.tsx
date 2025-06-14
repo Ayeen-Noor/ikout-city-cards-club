@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import GameModeCard from '../components/GameModeCard';
@@ -76,11 +77,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
-      {/* Background Image for homepage */}
+      {/* Background Image for homepage - using new background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/lovable-uploads/122cdf5e-4b2a-4b0e-ac40-c541db5b884b.png')`
+          backgroundImage: `url('/lovable-uploads/013894a0-f269-4526-92cc-f066cb2a8736.png')`
         }}
       />
       

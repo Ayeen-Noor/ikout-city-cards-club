@@ -15,7 +15,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   useEffect(() => {
     const img = new Image();
     img.onload = () => setImageLoaded(true);
-    img.src = '/lovable-uploads/122cdf5e-4b2a-4b0e-ac40-c541db5b884b.png';
+    img.src = '/lovable-uploads/013894a0-f269-4526-92cc-f066cb2a8736.png';
   }, []);
 
   // Start loading animation only after image is loaded
@@ -48,12 +48,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/lovable-uploads/122cdf5e-4b2a-4b0e-ac40-c541db5b884b.png')`
+            backgroundImage: `url('/lovable-uploads/013894a0-f269-4526-92cc-f066cb2a8736.png')`
           }}
         />
       )}
       
-      {/* Shuffle Button - Center of screen, responsive size to show full text */}
+      {/* Shuffle Button - Center of screen, using new button image */}
       {showButton && (
         <div className="relative z-10 flex items-center justify-center px-4">
           <button
@@ -61,9 +61,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
             className="transform transition-all duration-300 hover:scale-110 button-pulse"
           >
             <img 
-              src="/lovable-uploads/a27ad4d4-aa5e-49b5-b83b-c9ffa59770b5.png"
-              alt="Shuffle - Play More"
-              className="w-[28rem] h-auto drop-shadow-2xl max-w-[85vw] max-h-[60vh] object-contain"
+              src="/lovable-uploads/d826db9c-4e93-4b39-a9fb-459521a1893a.png"
+              alt="Shuffle"
+              className="w-[20rem] h-auto drop-shadow-2xl max-w-[80vw] max-h-[15vh] object-contain"
             />
           </button>
         </div>
